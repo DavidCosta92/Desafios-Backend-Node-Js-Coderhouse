@@ -19,11 +19,10 @@ class ProductManager{
     productoInvalido(product){
         let productoInvalido = "Producto con campos incompletos o erroneos";
 
-        let stringsValidos = typeof(product.title) === "string" && typeof(product.description) === "string" && typeof(product.thumbnail) === "string";
-        let numerosValidos = typeof(product.price) === "number" && typeof(product.code) === "number" && typeof(product.stock) === "number";
-        let cantidadValida = product.price > 0 && product.code > 0 && product.stock > 0;
+        let stringsValidos = typeof(product.title) === "string" && typeof(product.description) === "string" && typeof(product.thumbnail) === "string" && typeof(product.code) === "string";
+        let numerosValidos = typeof(product.price) === "number" && product.price > 0 && typeof(product.stock) === "number" && product.stock > 0;
         
-        if(stringsValidos && numerosValidos && cantidadValida){
+        if(stringsValidos && numerosValidos){
             productoInvalido = "";
         }
         return productoInvalido;
@@ -31,7 +30,8 @@ class ProductManager{
 
     addProduct(product){
         let productInManager = "";
-        if (!this.productoInvalido(product)){
+        let productoInvalido = this.productoInvalido(product);
+        if (!productoInvalido){
             if (this.#products.length === 0){
                 this.#products.push(product)
                 console.log(productInManager = "Producto agregado a manager");
@@ -48,7 +48,7 @@ class ProductManager{
                 }
             }
         }
-        console.log(this.productoInvalido(product));
+        console.log(productoInvalido);
     return productInManager;
     }
 
@@ -63,13 +63,19 @@ class ProductManager{
 
 }
 
-const product1 = new Product("manzana", "grande", 100, "./assets/product/manzana.png", 123456 , 10);
-const product2 = new Product("naranja", "chica", 80, "./assets/product/naranja.png", 234567 , 2);
-const product3 = new Product("durazno", "pelon", 50, "./assets/product/durazno.png", 345678 , 3);
-const product4 = new Product("pera", "madura", 120, "./assets/product/pera.png", 456789 , 2);
-const product5 = new Product("perassss", 120, "./assets/product/pera.png", 2);
 
+//// PRUEBAS /////
 const productManager1 = new ProductManager();
+console.log("-------- Mostrar productos dentro de Product manager=> Resultado esperado: [] -----------")
+console.log(productManager1.getProducts());
+
+const product1 = new Product("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123" , 25);
+const product2 = new Product("naranja", "chica", 80, "./assets/product/naranja.png", "234567" , 2);
+const product3 = new Product("durazno", "pelon", 50, "./assets/product/durazno.png", "345678" , 3);
+const product4 = new Product("manzana", "grande", 100, "./assets/product/manzana.png", "123456" , 10);
+const product5 = new Product("peras", 120, "./assets/product/pera.png", 2);
+
+
 productManager1.addProduct(product1);
 productManager1.addProduct(product2);
 productManager1.addProduct(product3);
