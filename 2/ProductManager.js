@@ -77,9 +77,14 @@ class ProductManager{
     }
 
     async getProductById(id){
-        await this.readProductsFile();
-        const productSearch = this.#products.find(product => product.idInManager === id);
-        return productSearch || "Not found";
+        try{
+            await this.readProductsFile();
+            const productSearch = this.#products.find(product => product.idInManager === id);
+            return productSearch
+        }
+        catch (error){
+            console.log(error)
+        }
     }
 
     isProductComplete(product){
@@ -90,7 +95,8 @@ class ProductManager{
         return productComplete;
     }
 
-    getIndexByProductId(id){
+    async getIndexByProductId(id){
+        await this.getProductById(id); // valida la existencia del ID, propaga error
         let indexInManager=0;
         for (let index = 0; index < this.#products.length; index++) {
             if(this.#products[index].idInManager === id) indexInManager = index+1;
@@ -100,7 +106,7 @@ class ProductManager{
 
     async updateProduct(id, product){    
         await this.readProductsFile();
-        let indexToUpdate = this.getIndexByProductId(id);   
+        let indexToUpdate = await this.getIndexByProductId(id);   
 
         if(this.isProductComplete(product)){
             this.#products.splice(indexToUpdate, 1, product);
@@ -118,7 +124,7 @@ class ProductManager{
 
     async deleteProduct(id){
         await this.readProductsFile();  
-        let indexToDelete = this.getIndexByProductId(id);              
+        let indexToDelete = await this.getIndexByProductId(id);              
         this.#products.splice(indexToDelete, 1);
         this.saveProductsFile();
     }
