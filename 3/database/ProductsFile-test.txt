@@ -1,0 +1,38 @@
+[
+  {
+    "idProduct": "93e1778d-8f1d-4937-b1d9-3700d8970132",
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25
+  },
+  {
+    "idProduct": "d7c297c3-bf72-474d-9cea-30c2572cd6bc",
+    "title": "naranja",
+    "description": "chica",
+    "price": 80,
+    "thumbnail": "./assets/product/naranja.png",
+    "code": "234567",
+    "stock": 2
+  },
+  {
+    "idProduct": "3977a92d-d673-45f6-80a2-eecfb5057524",
+    "title": "manzana",
+    "description": "grande",
+    "price": 80,
+    "thumbnail": "./assets/product/manzana.png",
+    "code": "2567",
+    "stock": 2
+  },
+  {
+    "idProduct": "de701e26-6d6a-4f94-ba81-14efbad9f58f",
+    "title": "peras",
+    "description": "grande",
+    "price": 120,
+    "thumbnail": "./assets/product/pera.png",
+    "code": "25267",
+    "stock": 2
+  }
+]
