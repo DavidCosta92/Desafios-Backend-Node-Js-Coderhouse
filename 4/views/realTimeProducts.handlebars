@@ -1,0 +1,48 @@
+<p>Ya que la conexión entre una consulta HTTP y websocket no está contemplada dentro de la clase. Se recomienda que, para la creación y eliminación de un producto, Se cree un formulario simple en la vista  realTimeProducts.handlebars. Para que el contenido se envíe desde websockets y no HTTP. Sin embargo, esta no es la mejor solución, leer el siguiente punto.
+</p>
+<p>Si se desea hacer la conexión de socket emits con HTTP, deberás buscar la forma de utilizar el servidor io de Sockets dentro de la petición POST. ¿Cómo utilizarás un emit dentro del POST?
+</p>
+
+<h1 class=" p-3">Form para agregar productos</h1>
+<div class=" p-3 text-end">
+    <form class="d-flex flex-wrap">
+        <div class="mb-3 d-flex w-50">
+            <label for="title" class="form-label p-1 w-25">Nombre</label>
+            <input type="text" class="form-control 1 w-75" id="title" aria-describedby="title">
+        </div>
+        <div class="mb-3 d-flex  w-50">
+            <label for="code" class="form-label p-1 w-25">Codigo</label>
+            <input type="text" class="form-control w-75" id="code" aria-describedby="code">
+        </div>
+        <div class="mb-3 d-flex w-100">
+            <label for="description" class="form-label p-1 w-10">Descripcion</label>
+            <input type="text" class="form-control w-90" id="description" aria-describedby="description">
+        </div>
+
+        <div class="mb-3 d-flex w-25">
+            <label for="price" class="form-label p-1 w-10">Precio</label>
+            <input type="number" class="form-control " id="price" aria-describedby="price">
+        </div>
+        <div class="mb-3 d-flex w-50">
+            <label for="category" class="form-label p-1 w-15">Categoria</label>
+            <input type="text" class="form-control " id="category" aria-describedby="category">
+        </div> 
+        <div class="mb-3 d-flex w-25">
+            <label for="stock" class="form-label p-1 w-10">Stock</label>
+            <input type="number" class="form-control " id="stock" aria-describedby="stock">
+        </div>
+        <div class="mb-3 d-flex w-100">
+            <label for="thumbnails" class="form-label p-1 ">Thumbnails</label>
+            <input type="text" class="form-control" id="thumbnails" aria-describedby="thumbnails">
+        </div>     
+    </form>
+    <button class="btn btn-primary w-50 translate-middle mt-3" onclick="obtenerDatosForm()">Crear producto</button>
+</div>
+
+<div class="p-3">
+    <h1>Productos existentes</h1>
+    <div id="productosRealTime">   </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
