@@ -18,11 +18,10 @@ app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
 
-// SETEAR CARPETA PUBLICA PARA LEVANTARLA DESDE FRONT
 app.use(express.static('./public'))
 
-const httpServer = app.listen(PORT, () => console.log("Servidor activo")) // INSTANCIO VARIABLE PARA USAR SERVIDOR CON IO
-const io = new IOServer(httpServer) // PASO SERVIDOR CREADO PARA QUE SEA BIDIRECCIONAL
+const httpServer = app.listen(PORT, () => console.log("Servidor activo"))
+const io = new IOServer(httpServer) 
 
 const productManager2 = new ProductManager ("database");
 io.on('connection', async clientSocket=>{ 
@@ -43,7 +42,6 @@ io.on('connection', async clientSocket=>{
             }) 
             const productAdded = await productManager2.addProduct(product);
             io.emit('actualizarRender', await productManager2.getProducts())
-
         } catch (error) {
             console.log("ERROR => ", error.message)
         }
@@ -68,7 +66,6 @@ app.get("/realtimeproducts" , async (req, res, next)=>{
     } catch (error) {
         next(error);        
     }
-
 })
 
 app.get("/" , async (req, res, next)=>{ 
@@ -80,7 +77,6 @@ app.get("/" , async (req, res, next)=>{
             productos : products,
             pageTitle: 'Productos ESTATICOS'
         })
-       console.log("products==>",products)
     } catch (error) {
         next(error);        
     }

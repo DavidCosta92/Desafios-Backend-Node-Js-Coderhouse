@@ -52,8 +52,8 @@ function obtenerDatosForm(){
     const productoNuevo = {title : title , description : description , code : code , price : price , category : category , stock : stock , thumbnails : thumbnails}
     crearProducto(productoNuevo)
 }
-function crearProducto(productoNuevo){
-    serverSocket.emit('crearProducto', productoNuevo)
+function crearProducto(productoNuevo){    
+  serverSocket.emit('crearProducto', productoNuevo)
 }
 
 function eliminarProducto(id){
