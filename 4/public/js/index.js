@@ -53,7 +53,13 @@ function obtenerDatosForm(){
     crearProducto(productoNuevo)
 }
 function crearProducto(productoNuevo){    
-  serverSocket.emit('crearProducto', productoNuevo)
+  //serverSocket.emit('crearProducto', productoNuevo)
+
+  // USANDO POST =>
+  // revisar como enviar desde form con methodo post al endpoint..
+
+
+
 }
 
 function eliminarProducto(id){

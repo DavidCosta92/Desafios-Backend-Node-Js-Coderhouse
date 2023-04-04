@@ -95,7 +95,7 @@ export class ProductManager{
     async updateProduct(idProduct, product){    
         try {
             await this.readProductsFile();
-            let indexToUpdate = await this.getIndexByProductId(idProduct);   
+            let indexToUpdate = await this.getIndexByProductId(idProduct);  
     
             if(this.isProductComplete(product)){
                 this.#products.splice(indexToUpdate, 1, product);

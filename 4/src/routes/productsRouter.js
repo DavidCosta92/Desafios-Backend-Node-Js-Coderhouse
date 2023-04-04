@@ -28,6 +28,10 @@ productsRouter.post('/', async (req, res , next) => {
         }) 
         const productAdded = await productManager.addProduct(product);
         res.json(productAdded);        
+
+        // ACA DEBERIA USAR UN MIDLEWARE PARA USAR SOCKETS DENTRO DE LA PETICION POST
+
+
     } catch (error) {
         next(error);
     }

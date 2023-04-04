@@ -18,10 +18,11 @@ app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
 
+// SETEAR CARPETA PUBLICA PARA LEVANTARLA DESDE FRONT
 app.use(express.static('./public'))
 
-const httpServer = app.listen(PORT, () => console.log("Servidor activo"))
-const io = new IOServer(httpServer) 
+const httpServer = app.listen(PORT, () => console.log("Servidor activo")) // INSTANCIO VARIABLE PARA USAR SERVIDOR CON IO
+const io = new IOServer(httpServer) // PASO SERVIDOR CREADO PARA QUE SEA BIDIRECCIONAL
 
 const productManager2 = new ProductManager ("database");
 io.on('connection', async clientSocket=>{ 
